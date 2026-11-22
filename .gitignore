@@ -1,0 +1,8 @@
+*.xcodeproj/
+build/
+DerivedData/
+screenshots/
+.asc-app-id
+.DS_Store
+__pycache__/
+.venv/
