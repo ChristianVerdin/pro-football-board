@@ -7,6 +7,8 @@ No accounts, push, analytics or ads. Times are shown in America/Chicago.
 Independent and unofficial. Not affiliated with, endorsed or sponsored by the National Football League or any team.
 Scores and play data via ESPN. Season metrics from nflverse (CC BY 4.0). Weather by Open-Meteo.com (CC BY 4.0).
 
+_Status, 2026-11-27: version 1.0.1 (build 3) is waiting for App Review and is not on the App Store yet. It would be the first release, in the United States only. Version history: `APP_STORE.md`._
+
 ## Layout
 
 | Path | What |

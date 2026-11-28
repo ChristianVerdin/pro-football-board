@@ -1,15 +1,29 @@
 # Pro Football Board: App Store notes
 
 Bundle `com.hoynelabs.profootballboard` (widget `.widget`, tests `.tests`), team 3V73W9NUZ6, Hoyne Labs LLC.
-Version 1.0.0, iOS 17.0+, iPhone and iPad. Stats only: no wagering content or vocabulary anywhere, including metadata and screenshots
+Version 1.0.1 (build 3), iOS 17.0+, iPhone and iPad. Stats only: no wagering content or vocabulary anywhere, including metadata and screenshots
 (`scripts/check.py` scans the repo for it, and CI runs it on every push).
+
+## Status and versions
+
+| Version (build) | Submitted | Live | What |
+| --- | --- | --- | --- |
+| 1.0.0 (2) | 11-15 | never released | First submission. In review for 12 days, then removed from review on 11-27 before a decision |
+| 1.0.1 (3) | 11-27 | pending review | Becomes the first release: clearer suspended and delayed states, a season-complete message, a retry when the live call is refused, widget cache labels, a once-per-version rating prompt |
+
+All dates 2026, Central. Release type is `AFTER_APPROVAL`, so approval puts the version on the store by itself.
+Available in the United States only. 1.0.1 reuses the 1.0.0 version record, renamed, with build 3 attached.
+Check the state with `asc review status --app <app id>`.
 
 ## Listing copy
 
 - App info: `metadata/app-info/en-US.json` (name, subtitle, privacy URL). Category: Sports (`metadata/categories.json`).
-- Version copy: `metadata/version/1.0.0/en-US.json` (description, keywords, promotional text, What's New, URLs).
+- Version copy: `metadata/version/1.0.1/en-US.json` (description, keywords, promotional text, What's New, URLs);
+  the 1.0.0 file is kept for history. Apple takes no What's New text on a first release, so that field waits
+  for the version after the first one that goes live.
 - Support https://cfbgameday.app/nfl/support, privacy https://cfbgameday.app/nfl/privacy, marketing https://cfbgameday.app/nfl.
-  The pages are `nfl/support.html` and `nfl/privacy.html` in this repo and must be live before submission.
+  The pages are `nfl/support.html` and `nfl/privacy.html` in the
+  [cfb-gameday-board](https://github.com/ChristianVerdin/cfb-gameday-board) repo, which serves the site; both are live.
 - Name, subtitle, icon and keywords carry no NFL marks, team names or logos. "NFL" appears once in the description,
   nominatively ("fans of NFL games"). The independence disclaimer closes the description and sits in About.
 - Required footer text (About, web footer): "Independent and unofficial. Not affiliated with, endorsed or sponsored by the
@@ -45,8 +59,14 @@ Every content question is None, so the expected rating is 4+.
 | Messaging and chat | No |
 | Advertising | No |
 | Parental controls, age assurance | No |
+| Location shared with other people (`sharedLocation`) | No |
+| Dating and relationships (`datingAndRelationships`) | No |
 
 The app shows scores and statistics. It has no wagering content of any kind.
+
+Apple added the last two questions in November 2026; both were answered on 11-27. asc 6.6.1 has no flags for
+them, so they are set with a raw request while a version is open:
+`asc api PATCH /v1/ageRatingDeclarations/<DECLARATION_ID> --confirm --body '{"data":{"type":"ageRatingDeclarations","id":"<DECLARATION_ID>","attributes":{"sharedLocation":false,"datingAndRelationships":false}}}'`.
 
 ## Privacy label
 
